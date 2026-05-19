@@ -1,99 +1,35 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: hermes-agent-app
+  name: hermes-agent-config
   namespace: hermes-agent
 data:
-  app.py: |
-    import asyncio
-    import html
-    import logging
-    import os
-    from contextlib import suppress
+  config.yaml: |
+    model:
+      provider: openai-codex
+      default: gpt-5.3-codex
+      base_url: https://chatgpt.com/backend-api/codex
 
-    import httpx
-    import uvicorn
-    from fastapi import FastAPI
-    from pydantic import BaseModel
+    terminal:
+      backend: local
+      cwd: /opt/data/workspace
+      timeout: 180
+      lifetime_seconds: 300
 
-    TELEGRAM_BOT_TOKEN = os.environ["TELEGRAM_BOT_TOKEN"]
-    AGENT_NAME = os.getenv("AGENT_NAME", "hermes-agent")
-    PUBLIC_URL = os.getenv("PUBLIC_URL", "https://hermes-agent.api-api-api.com")
-    TELEGRAM_API = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}"
+    display:
+      tool_progress: "new"
+      busy_ack_enabled: true
 
-    logging.basicConfig(level=os.getenv("LOG_LEVEL", "INFO"))
-    logging.getLogger("httpx").setLevel(logging.WARNING)
-    log = logging.getLogger(AGENT_NAME)
-    app = FastAPI(title=AGENT_NAME)
+    platforms:
+      telegram:
+        enabled: true
+        reply_to_mode: "all"
+      api_server:
+        enabled: true
+        extra:
+          host: "0.0.0.0"
+          port: 8642
+          model_name: "hermes-agent"
 
-    class ChatRequest(BaseModel):
-      message: str
-
-    def build_reply(message: str) -> str:
-      cleaned = " ".join(message.strip().split())
-      if not cleaned:
-        return "Hermes online. Напиши сообщение, и я отвечу."
-      return f"Hermes online. Получил: {cleaned}"
-
-    @app.get("/healthz")
-    async def healthz():
-      return {"ok": True, "agent": AGENT_NAME}
-
-    @app.get("/")
-    async def root():
-      return {
-        "agent": AGENT_NAME,
-        "url": PUBLIC_URL,
-        "cli": f"curl -sS -X POST {PUBLIC_URL}/v1/chat -H 'content-type: application/json' -d '{{\"message\":\"ping\"}}'",
-      }
-
-    @app.post("/v1/chat")
-    async def chat(req: ChatRequest):
-      return {"reply": build_reply(req.message)}
-
-    async def telegram_poll_loop():
-      offset = None
-      async with httpx.AsyncClient(timeout=30) as client:
-        while True:
-          try:
-            params = {"timeout": 25, "allowed_updates": '["message"]'}
-            if offset is not None:
-              params["offset"] = offset
-            response = await client.get(f"{TELEGRAM_API}/getUpdates", params=params)
-            response.raise_for_status()
-            for update in response.json().get("result", []):
-              offset = update["update_id"] + 1
-              message = update.get("message") or {}
-              chat = message.get("chat") or {}
-              text = message.get("text") or ""
-              chat_id = chat.get("id")
-              if chat_id is None:
-                continue
-              reply = build_reply(text)
-              await client.post(
-                f"{TELEGRAM_API}/sendMessage",
-                json={
-                  "chat_id": chat_id,
-                  "text": html.escape(reply),
-                  "parse_mode": "HTML",
-                  "disable_web_page_preview": True,
-                },
-              )
-          except Exception as exc:
-            log.warning("telegram polling failed: %s", type(exc).__name__)
-            await asyncio.sleep(5)
-
-    @app.on_event("startup")
-    async def startup():
-      app.state.telegram_task = asyncio.create_task(telegram_poll_loop())
-
-    @app.on_event("shutdown")
-    async def shutdown():
-      task = getattr(app.state, "telegram_task", None)
-      if task:
-        task.cancel()
-        with suppress(asyncio.CancelledError):
-          await task
-
-    if __name__ == "__main__":
-      uvicorn.run(app, host="0.0.0.0", port=8080)
+    platform_toolsets:
+      telegram: [hermes-telegram]
