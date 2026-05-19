@@ -5,6 +5,7 @@ metadata:
   namespace: hermes-agent
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-production
+    external-dns.alpha.kubernetes.io/cloudflare-proxied: "false"
     external-dns.alpha.kubernetes.io/hostname: hermes-agent.api-api-api.com
 spec:
   ingressClassName: traefik
