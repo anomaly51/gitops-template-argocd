@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: apache-httpd
+  labels:
+    app.kubernetes.io/name: apache-httpd
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: apache-httpd
+  ports:
+    - name: http
+      port: 80
+      targetPort: http
+

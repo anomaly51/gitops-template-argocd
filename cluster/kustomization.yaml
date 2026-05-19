@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - projects/apps-project.yaml
+  - applications/static-nginx.yaml
+  - applications/apache-httpd.yaml
+  - applications/stateful-nginx.yaml
+  - applications/batch-hello.yaml
+  - applications/cron-hello.yaml
+  - applications/config-bundle.yaml
+

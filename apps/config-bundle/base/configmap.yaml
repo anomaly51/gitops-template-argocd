@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-bundle
+  labels:
+    app.kubernetes.io/name: config-bundle
+data:
+  environment: lab
+  owner: argocd-learn-gitops
+  message: config-only application managed by Argo CD
+

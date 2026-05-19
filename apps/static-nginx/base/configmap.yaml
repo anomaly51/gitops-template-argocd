@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: static-nginx-content
+  labels:
+    app.kubernetes.io/name: static-nginx
+data:
+  index.html: |
+    static-nginx served by Argo CD GitOps
+

@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apache-httpd
+  labels:
+    app.kubernetes.io/name: apache-httpd
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: apache-httpd
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: apache-httpd
+    spec:
+      containers:
+        - name: httpd
+          image: httpd:2.4-alpine
+          ports:
+            - name: http
+              containerPort: 80
+
