@@ -1,0 +1,8 @@
+name: helm-bitnami-nginx
+repoURL: https://charts.bitnami.com/bitnami
+chart: nginx
+targetRevision: 24.0.0
+releaseName: helm-bitnami-nginx
+replicaCount: "1"
+serviceType: ClusterIP
+

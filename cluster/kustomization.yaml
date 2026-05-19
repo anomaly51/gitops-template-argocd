@@ -3,12 +3,5 @@ kind: Kustomization
 
 resources:
   - projects/apps-project.yaml
-  - applications/static-nginx.yaml
-  - applications/apache-httpd.yaml
-  - applications/stateful-nginx.yaml
-  - applications/batch-hello.yaml
-  - applications/cron-hello.yaml
-  - applications/config-bundle.yaml
-  - applications/helm-podinfo.yaml
-  - applications/helm-bitnami-nginx.yaml
-  - applications/helm-blackbox-exporter.yaml
+  - applicationsets/local-apps.yaml
+  - applicationsets/helm-apps.yaml

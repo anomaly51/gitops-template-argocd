@@ -7,8 +7,9 @@ Minimal GitOps repository for one Kubernetes cluster managed by Argo CD.
 - `bootstrap/` contains the root Argo CD `Application` applied once with `kubectl`.
 - `cluster/` is the declarative entry point for this single cluster.
 - `cluster/projects/` contains Argo CD projects.
-- `cluster/applications/` contains child Argo CD applications.
+- `cluster/applicationsets/` contains Argo CD ApplicationSets that generate child applications.
 - `apps/` contains Kubernetes manifests and future in-repo Helm charts.
+- `helm-apps/` contains metadata for external Helm chart applications.
 - `platform/` is reserved for ingress, gateway, operators, and observability.
 
 ## Demo Applications
