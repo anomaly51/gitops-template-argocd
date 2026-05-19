@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-learn-smoke
+  labels:
+    app.kubernetes.io/name: argocd-learn-smoke
+data:
+  status: created-by-gitops
+  purpose: argo-cd-prune-verification
+
