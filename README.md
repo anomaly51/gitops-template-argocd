@@ -1,4 +1,4 @@
-# Argo CD Learn GitOps
+# Workflow 2 GitOps
 
 Single-cluster GitOps repository managed by Argo CD.
 
@@ -22,5 +22,6 @@ kubectl apply -f bootstrap/root-application.yaml
 - controllers: cert-manager, external-secrets, nfs-subdir-external-provisioner.
 - configs: Vault ClusterSecretStore, cert-manager issuer, external-dns secret, cloudflared config.
 - addons: external-dns with a separate `txtOwnerId` for this Argo cluster.
+- apps: hermes-agent Telegram/API agent exposed at `https://hermes-agent.api-api-api.com`.
 
 Cloudflared credentials/config are migrated, but the active cloudflared Deployment is intentionally not enabled here to avoid attaching the same Cloudflare tunnel from two clusters.

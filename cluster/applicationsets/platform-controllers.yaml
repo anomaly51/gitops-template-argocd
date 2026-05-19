@@ -24,7 +24,7 @@ spec:
       finalizers:
         - resources-finalizer.argocd.argoproj.io
     spec:
-      project: argocd-learn-apps
+      project: workflow-2-apps
       source:
         repoURL: "{{.repoURL}}"
         chart: "{{.chart}}"
@@ -42,4 +42,3 @@ spec:
         syncOptions:
           - CreateNamespace=true
           - ServerSideApply=true
-

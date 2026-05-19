@@ -3,6 +3,7 @@ kind: Kustomization
 
 resources:
   - projects/apps-project.yaml
+  - applications/hermes-agent.yaml
   - applicationsets/platform-controllers.yaml
   - applicationsets/platform-configs.yaml
   - applicationsets/platform-addons.yaml

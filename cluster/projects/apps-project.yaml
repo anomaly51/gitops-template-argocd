@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: AppProject
 metadata:
-  name: argocd-learn-apps
+  name: workflow-2-apps
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  description: Platform applications managed by this single-cluster GitOps repository.
+  description: Workflow 2 platform and training applications managed by Argo CD.
   sourceRepos:
     - https://github.com/anomaly51/argocd-learn-gitops.git
     - https://charts.jetstack.io
@@ -32,9 +32,11 @@ spec:
     - server: https://kubernetes.default.svc
       namespace: kube-system
     - server: https://kubernetes.default.svc
-      namespace: argocd-learn-lab
+      namespace: workflow-2-lab
     - server: https://kubernetes.default.svc
-      namespace: argocd-learn-helm
+      namespace: workflow-2-helm
+    - server: https://kubernetes.default.svc
+      namespace: hermes-agent
   clusterResourceWhitelist:
     - group: "*"
       kind: "*"
