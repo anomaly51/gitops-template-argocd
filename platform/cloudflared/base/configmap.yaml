@@ -18,6 +18,8 @@ data:
         service: http://traefik.kube-system.svc.cluster.local:80
       - hostname: online-shop-api.api-api-api.com
         service: http://traefik.kube-system.svc.cluster.local:80
+      - hostname: hermes-agent.api-api-api.com
+        service: http://traefik.kube-system.svc.cluster.local:80
       - hostname: vault.api-api-api.com
         service: http://192.168.1.104
       - hostname: harbor.api-api-api.com
@@ -25,4 +27,3 @@ data:
       - hostname: argo-workflows.api-api-api.com
         service: http://192.168.1.104
       - service: http_status:404
-

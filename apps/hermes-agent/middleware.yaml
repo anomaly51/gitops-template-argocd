@@ -1,0 +1,13 @@
+apiVersion: traefik.io/v1alpha1
+kind: Middleware
+metadata:
+  name: hermes-agent-root-redirect
+  namespace: hermes-agent
+  labels:
+    app.kubernetes.io/name: hermes-agent
+    app.kubernetes.io/part-of: workflow-2
+spec:
+  redirectRegex:
+    regex: "^https?://hermes-agent\\.api-api-api\\.com/?$"
+    replacement: "https://hermes-agent.api-api-api.com/health"
+    permanent: false

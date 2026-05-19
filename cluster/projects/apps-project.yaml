@@ -11,6 +11,7 @@ spec:
   description: Workflow 2 platform and training applications managed by Argo CD.
   sourceRepos:
     - https://github.com/anomaly51/argocd-learn-gitops.git
+    - https://github.com/catdevdev/hermes-agent-gitops.git
     - https://charts.jetstack.io
     - https://charts.external-secrets.io
     - https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
