@@ -10,9 +10,9 @@ metadata:
 spec:
   project: workflow-2-apps
   source:
-    repoURL: https://github.com/catdevdev/hermes-agent-gitops.git
+    repoURL: https://github.com/anomaly51/argocd-learn-gitops.git
     targetRevision: main
-    path: apps/hermes-agent/overlays/prod
+    path: apps/hermes-agent
   destination:
     server: https://kubernetes.default.svc
     namespace: hermes-agent
