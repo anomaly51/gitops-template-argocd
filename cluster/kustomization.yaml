@@ -9,4 +9,6 @@ resources:
   - applications/batch-hello.yaml
   - applications/cron-hello.yaml
   - applications/config-bundle.yaml
-
+  - applications/helm-podinfo.yaml
+  - applications/helm-bitnami-nginx.yaml
+  - applications/helm-blackbox-exporter.yaml

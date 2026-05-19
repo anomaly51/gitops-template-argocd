@@ -20,6 +20,12 @@ Minimal GitOps repository for one Kubernetes cluster managed by Argo CD.
 - `cron-hello`: Kubernetes CronJob.
 - `config-bundle`: config-only Application with a ConfigMap.
 
+## Demo Helm Charts
+
+- `helm-podinfo`: podinfo chart from `https://stefanprodan.github.io/podinfo`.
+- `helm-bitnami-nginx`: nginx chart from `https://charts.bitnami.com/bitnami`.
+- `helm-blackbox-exporter`: prometheus-blackbox-exporter chart from `https://prometheus-community.github.io/helm-charts`.
+
 ## Bootstrap
 
 ```bash
