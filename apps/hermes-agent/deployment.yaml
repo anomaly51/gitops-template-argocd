@@ -18,6 +18,8 @@ spec:
       app.kubernetes.io/name: hermes-agent
   template:
     metadata:
+      annotations:
+        hermes-agent/config-version: "2026-05-19-toolsets"
       labels:
         app.kubernetes.io/name: hermes-agent
         app.kubernetes.io/part-of: workflow-2
