@@ -8,20 +8,34 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "-1"
 spec:
-  description: Demo applications managed by this single-cluster GitOps repository.
+  description: Platform applications managed by this single-cluster GitOps repository.
   sourceRepos:
     - https://github.com/anomaly51/argocd-learn-gitops.git
+    - https://charts.jetstack.io
+    - https://charts.external-secrets.io
+    - https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
+    - https://kubernetes-sigs.github.io/external-dns/
     - https://stefanprodan.github.io/podinfo
     - https://charts.bitnami.com/bitnami
     - https://prometheus-community.github.io/helm-charts
   destinations:
     - server: https://kubernetes.default.svc
+      namespace: cert-manager
+    - server: https://kubernetes.default.svc
+      namespace: external-secrets
+    - server: https://kubernetes.default.svc
+      namespace: nfs-system
+    - server: https://kubernetes.default.svc
+      namespace: external-dns
+    - server: https://kubernetes.default.svc
+      namespace: cloudflared
+    - server: https://kubernetes.default.svc
       namespace: argocd-learn-lab
     - server: https://kubernetes.default.svc
       namespace: argocd-learn-helm
   clusterResourceWhitelist:
-    - group: ""
-      kind: Namespace
+    - group: "*"
+      kind: "*"
   namespaceResourceWhitelist:
     - group: "*"
       kind: "*"

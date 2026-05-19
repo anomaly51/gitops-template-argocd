@@ -3,5 +3,6 @@ kind: Kustomization
 
 resources:
   - projects/apps-project.yaml
-  - applicationsets/local-apps.yaml
-  - applicationsets/helm-apps.yaml
+  - applicationsets/platform-controllers.yaml
+  - applicationsets/platform-configs.yaml
+  - applicationsets/platform-addons.yaml

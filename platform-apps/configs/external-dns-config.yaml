@@ -1,0 +1,4 @@
+name: external-dns-config
+path: platform/external-dns/base
+namespace: external-dns
+

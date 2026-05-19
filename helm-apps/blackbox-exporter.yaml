@@ -1,8 +1,0 @@
-name: helm-blackbox-exporter
-repoURL: https://prometheus-community.github.io/helm-charts
-chart: prometheus-blackbox-exporter
-targetRevision: 11.10.0
-releaseName: helm-blackbox-exporter
-replicaCount: "1"
-serviceType: ClusterIP
-

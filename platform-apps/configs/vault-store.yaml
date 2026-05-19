@@ -1,0 +1,4 @@
+name: vault-store
+path: platform/vault-store/base
+namespace: external-secrets
+

@@ -1,0 +1,4 @@
+name: cloudflared-config
+path: platform/cloudflared/base
+namespace: cloudflared
+
