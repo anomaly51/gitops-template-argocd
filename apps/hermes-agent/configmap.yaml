@@ -32,4 +32,5 @@ data:
           model_name: "hermes-agent"
 
     platform_toolsets:
-      telegram: [hermes-telegram]
+      telegram: [web, terminal, file, skills, todo, cronjob, messaging]
+      api_server: [web, terminal, file, skills, todo, cronjob, messaging]
