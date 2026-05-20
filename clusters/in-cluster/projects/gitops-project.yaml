@@ -6,9 +6,9 @@ metadata:
 spec:
   description: Generic project for applications managed by this GitOps repository.
   sourceRepos:
-    - "*"
+    - https://github.com/your-org/your-gitops-repo.git
   destinations:
-    - server: "*"
+    - server: https://kubernetes.default.svc
       namespace: "*"
   clusterResourceWhitelist:
     - group: "*"

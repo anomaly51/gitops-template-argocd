@@ -5,17 +5,22 @@ Minimal Argo CD GitOps template.
 ## Layout
 
 - `bootstrap/` contains the root Argo CD `Application` applied once with `kubectl`.
-- `cluster/` is the declarative entry point for cluster resources.
-- `cluster/projects/` is reserved for optional Argo CD projects.
-- `cluster/applications/` is reserved for direct Argo CD child Applications.
-- `cluster/applicationsets/` is reserved for ApplicationSets that generate child Applications.
-- `platform-apps/` is reserved for ApplicationSet metadata grouped by controllers, configs, and addons.
-- `platform/` is reserved for platform manifests.
-- `apps/` is reserved for workload application manifests.
+- `clusters/in-cluster/` is the default cluster entrypoint watched by the root Application.
+- `clusters/in-cluster/projects/` contains Argo CD project definitions.
+- `apps/` contains reusable workload manifests, one directory per app.
+- `infrastructure/` contains reusable cluster infrastructure manifests, one directory per component.
+
+When the repo grows, add Argo CD `Application` or `ApplicationSet` resources under
+`clusters/in-cluster/` to point at paths in `apps/` and `infrastructure/`.
 
 ## Bootstrap
 
-Update `spec.source.repoURL` in `bootstrap/root-application.yaml` to point at the repository created from this template, then apply it:
+Update repository placeholders in these files to point at the repository created from this template:
+
+- `bootstrap/root-application.yaml`
+- `clusters/in-cluster/projects/gitops-project.yaml`
+
+Then apply the root Application:
 
 ```bash
 kubectl apply -f bootstrap/root-application.yaml
@@ -23,5 +28,5 @@ kubectl apply -f bootstrap/root-application.yaml
 
 ## Template State
 
-This repository intentionally contains no workload, platform, controller, config, or addon applications.
-Add resources under `cluster/` when the environment is ready to manage them.
+This repository intentionally contains no preinstalled workloads or platform components.
+It starts with only a root Application and a generic AppProject.
