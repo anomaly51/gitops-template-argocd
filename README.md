@@ -1,4 +1,4 @@
-# Workflow 2 Argo CD GitOps Template
+# GitOps Template Argo CD
 
 Minimal single-cluster GitOps template managed by Argo CD.
 
