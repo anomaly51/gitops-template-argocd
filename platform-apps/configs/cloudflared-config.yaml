@@ -1,3 +1,0 @@
-name: cloudflared-config
-sourcePath: platform/cloudflared/base
-namespace: cloudflared
