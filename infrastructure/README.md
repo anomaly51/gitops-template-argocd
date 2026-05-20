@@ -11,5 +11,5 @@ infrastructure/
   ingress-nginx/
 ```
 
-Expose components to Argo CD from `clusters/in-cluster/` with an `Application`
+Expose components to Argo CD from `cluster/` with an `Application`
 or `ApplicationSet`.

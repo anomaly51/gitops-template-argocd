@@ -11,5 +11,5 @@ apps/
   frontend/
 ```
 
-Expose applications to Argo CD from `clusters/in-cluster/` with an `Application`
+Expose applications to Argo CD from `cluster/` with an `Application`
 or `ApplicationSet`.
